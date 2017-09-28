@@ -238,26 +238,22 @@
 							p#translationsid#_translationmaps.remotesiteid IN
 							(<cfqueryparam value="#gsmsettings.getSiteList()#" cfsqltype="CF_SQL_VARCHAR" maxlength="250" list="true">)
 				</cfquery>
+
+				<cfset langcontent = "">
+				<cfset langoutput = "">
+
+				<cfif qTrans.recordcount>
+					<cfloop query="qTrans">
+						<cfset langcontent = $.getBean('content').loadBy(contentid = remoteid,siteid=remotesiteid)>
+						<cfif not structKeyExists(sites,remotesiteid)>
+							<cfset sites[remotesiteid] = $.getBean('site').loadBy(siteid = remotesiteid) />
+						</cfif>
+
+	<cfsavecontent variable="langoutput"><cfoutput>#langoutput#
+		<xhtml:link rel="alternate" hreflang = "#sites[remotesiteid].getJavaLocale()#" href="#langcontent.getAssocURL()#" /></cfoutput></cfsavecontent>
+					</cfloop>
+				</cfif>
 			</cfif>
-
-			<cfset langcontent = "">
-			<cfset langoutput = "">
-
-				<cfdump var="#qTrans#">
-
-			<cfif qTrans.recordcount>
-				<cfloop query="qTrans">
-					<cfset langcontent = $.getBean('content').loadBy(contentid = remoteid,siteid=remotesiteid)>
-					<cfif not structKeyExists(sites,remotesiteid)>
-						<cfset sites[remotesiteid] = $.getBean('site').loadBy(siteid = remotesiteid) />
-					</cfif>
-
-<cfsavecontent variable="langoutput"><cfoutput>#langoutput#
-	<xhtml:link rel="alternate" hreflang = "#sites[remotesiteid].getJavaLocale()#" href="#langcontent.getAssocURL()#" /></cfoutput></cfsavecontent>
-			</cfloop>
-			</cfif>
-
-
 
 			<cfif isExempt neq true>
 <cfsavecontent variable="strXMLBlock"><cfoutput>
