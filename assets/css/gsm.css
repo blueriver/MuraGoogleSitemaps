@@ -1,0 +1,72 @@
+/*
+
+This file is part of
+
+Copyright 2010-2017 Stephen J. Withington, Jr.
+Licensed under the Apache License, Version v2.0
+http://www.apache.org/licenses/LICENSE-2.0
+
+*/
+
+/*  Brand
+-------------------------------------------------- */
+.container- .navbar .navbar-header {
+	padding: 0.5em;
+	margin: 0 1em;
+	float: right;
+	font-weight: bold;
+	font-size: 20px;
+	color: #333;
+	text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	transition: all .2s linear;
+}
+
+h3 {
+  margin: 24px 0 8px 0 !important;
+}
+p {
+  padding: 0 0 1em 0 !important;
+}
+
+/*  Nav
+-------------------------------------------------- */
+.container- .navbar-header a {
+	color: #333;
+}
+.container- .navbar-header .plugin-brand:hover  {
+	text-decoration: none;
+	text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+	color: #999;
+}
+
+.container- .navbar li.active a {
+	color: #333;
+}
+
+.container- .nav-stacked li.active a {
+	background: #69C;
+	color: #fff;
+}
+
+.container- ul:not(.nav), .container- ol:not(.nav) {
+	margin: 1em;
+}
+.container- ul:not(.nav) li, .container- ol:not(.nav) li {
+	margin: 0.5em;
+}
+.content .container- p {
+	margin-bottom: 1em !important;
+}
+
+
+@media screen and (max-width: 780px) {
+	.container- .navbar .navbar-header {
+		float: none;
+		clear: both;
+		dislay: block;
+		padding: 0 0 1em 0;
+		margin-left: 0;
+	}
+}

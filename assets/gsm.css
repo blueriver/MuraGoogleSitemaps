@@ -1,0 +1,65 @@
+/*
+
+This file is part of MuraFW1
+
+Copyright 2010-2017 Stephen J. Withington, Jr.
+Licensed under the Apache License, Version v2.0
+http://www.apache.org/licenses/LICENSE-2.0
+
+*/
+
+/* MuraFW1 Brand
+-------------------------------------------------- */
+.container-murafw1 .navbar .navbar-header {
+	padding: 0.5em;
+	margin: 0 1em;
+	float: right;
+	font-weight: bold;
+	font-size: 20px;
+	color: #333;
+	text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	transition: all .2s linear;
+}
+
+/* MuraFW1 Nav
+-------------------------------------------------- */
+.container-murafw1 .navbar-header a {
+	color: #333;
+}
+.container-murafw1 .navbar-header .plugin-brand:hover  {
+	text-decoration: none;
+	text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+	color: #999;
+}
+
+.container-murafw1 .navbar li.active a {
+	color: #333;
+}
+
+.container-murafw1 .nav-stacked li.active a {
+	background: #69C;
+	color: #fff;
+}
+
+.container-murafw1 ul:not(.nav), .container-murafw1 ol:not(.nav) {
+	margin: 1em;
+}
+.container-murafw1 ul:not(.nav) li, .container-murafw1 ol:not(.nav) li {
+	margin: 0.5em;
+}
+.content .container-murafw1 p {
+	margin-bottom: 1em !important;
+}
+
+
+@media screen and (max-width: 780px) {
+	.container-murafw1 .navbar .navbar-header {
+		float: none;
+		clear: both;
+		dislay: block;
+		padding: 0 0 1em 0;
+		margin-left: 0;
+	}
+}
