@@ -18,8 +18,14 @@ http://www.apache.org/licenses/LICENSE-2.0
 component persistent="false" accessors="true" output="false" extends="includes.framework.one" {
 
 	include 'includes/fw1config.cfm'; // framework variables
-	include '../../config/applicationSettings.cfm';
-	include '../../config/mappings.cfm';
+
+	if( fileexists(expandPath("../../config/applicationSettings.cfm")) ) {
+		include '../../config/applicationSettings.cfm';
+		include '../../config/mappings.cfm';
+	}
+	else {
+		include '../../core/appcfc/applicationSettings.cfm';
+	}
 	include '../mappings.cfm';
 
 	variables.fw1Keys = 'SERVICEEXECUTIONCOMPLETE,LAYOUTS,CONTROLLEREXECUTIONCOMPLETE,VIEW,SERVICES,CONTROLLERS,CONTROLLEREXECUTIONSTARTED';
@@ -175,11 +181,22 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 	}
 
 	public void function setupSession() {
-		include '../../config/appcfc/onSessionStart_include.cfm';
+		if( fileexists(expandPath("../../config/applicationSettings.cfm")) ) {
+			include '../../config/appcfc/onSessionStart_include.cfm';
+		}
+		else {
+			include '../../core/appcfc/onSessionStart_include.cfm';
+		}
 	}
 
 	public void function onSessionEnd() {
-		include '../../config/appcfc/onSessionEnd_include.cfm';
+		if( fileexists(expandPath("../../config/applicationSettings.cfm")) ) {
+			include '../../config/appcfc/onSessionEnd_include.cfm';
+		}
+		else {
+			include '../../core/appcfc/onSessionEnd_include.cfm';
+		}
+
 	}
 
 	public string function buildURL(required string action, string path='#resolvePath()#', any queryString='') {
