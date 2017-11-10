@@ -37,14 +37,20 @@ component persistent="false" accessors="true" output="false" extends="controller
 		<!--- extend object issue, must set this --->
 		rc.gsmsettings.save();
 
+
 		if(rc.gsmsettings.getValue('location') eq "web") {
 			filename = "#expandPath(application.configBean.getContext() & '/')#sitemap.xml";
 			rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sitemap.xml";
 		}
-		else {
+		else if(rc.gsmsettings.getValue('location') eq "site") {
 			filename ="#expandPath(application.configBean.getContext() & '/')##siteid#/sitemap.xml";
 			rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/#siteid#/sitemap.xml";
 		}
+		else {
+			filename =expandPath("#rc.gsmsettings.getValue('customlocation')#/sitemap.xml");
+			rc.fileURL	= "";
+		}
+
 		try {
 			file action="write" file="#filename#" output="#sitemapXML#";
 		}
@@ -57,6 +63,7 @@ component persistent="false" accessors="true" output="false" extends="controller
 			}
 			file action="write" file="#filename#" output="#sitemapXML#";
 		}
+
 			<!---
 			<cftry>
 			<cfset mailer.sendHTML(msg,

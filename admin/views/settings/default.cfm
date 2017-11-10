@@ -32,10 +32,15 @@ http://www.apache.org/licenses/LICENSE-2.0
 					</div>
 					<div class="mura-control-group">
 							<label for="location">Location</label>
-							<select name="location">
+							<select name="location" id="sitemap_location">
 								<option value="site" <cfif rc.gsmsettings.get('location') eq "site">selected="selected"</cfif>>Site Folder</option>
 								<option value="web" <cfif rc.gsmsettings.get('location') eq "web">selected="selected"</cfif>>Web Root</option>
+								<option value="custom" <cfif rc.gsmsettings.get('location') eq "custom">selected="selected"</cfif>>Custom</option>
 							</select>
+					</div>
+					<div class="mura-control-group" id="custom_location" style="display: none;">
+							<label for="customlocation">Custom Location</label>
+							<input type="text" name="customlocation" id="customlocation" value="#rc.gsmsettings.get('customlocation')#">
 					</div>
 					<div class="mura-control-group">
 							<label for="frequency">Update Frequency</label>
@@ -45,10 +50,12 @@ http://www.apache.org/licenses/LICENSE-2.0
 								<option value="monthly" <cfif rc.gsmsettings.get('frequency') eq "monthly">selected="selected"</cfif>>Monthly</option>
 							</select>
 					</div>
+					<!---
 					<div class="mura-control-group">
 							<label for="notifyemail">Notification</label>
 							<input name="notifyemail" type="text" value="#rc.gsmsettings.get('notifyemail')#">
 					</div>
+					--->
 				</div> <!-- /.block-content -->
 				<div class="mura-actions">
 					<div class="form-actions">
@@ -61,5 +68,24 @@ http://www.apache.org/licenses/LICENSE-2.0
 		</div>
 	</div>
 	</form>
-<cfdump var="#form#" />
 </cfoutput>
+
+<script>
+$( document ).ready( function() {
+	$("#sitemap_location").change( function() {
+		showHideCustom();
+	});
+
+	function showHideCustom() {
+		if( $("#sitemap_location").val() === "custom" ) {
+			$("#custom_location").show();
+		}
+		else {
+			$("#custom_location").hide();
+		}
+	}
+
+	showHideCustom();
+
+});
+</script>

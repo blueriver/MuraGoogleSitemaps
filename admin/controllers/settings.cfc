@@ -19,7 +19,20 @@ component persistent="false" accessors="true" output="false" extends="controller
 			rc.gsmsettings.set('isEnabled',form.isEnabled == 1 ? 1 : 0);
 			rc.gsmsettings.set('location',form.location);
 			rc.gsmsettings.set('frequency',form.frequency);
-			rc.gsmsettings.set('notifyemail',form.notifyemail);
+
+			if(structKeyExists(form,"notifyemail") and len(form.notifyemail)) {
+				rc.gsmsettings.set('notifyemail',form.notifyemail);
+			}
+
+			if(form.location eq "custom") {
+				 if(len(form.customlocation)) {
+					rc.gsmsettings.set('customlocation',form.customlocation);
+				}
+				else {
+					rc.gsmsettings.set('customlocation',"");
+					rc.gsmsettings.set('location',"site");
+				}
+			}
 
 			rc.gsmsettings.save();
 			rc.gsmsettings = $.getBean('gsmsettings').loadBy(siteid = session.siteid);
