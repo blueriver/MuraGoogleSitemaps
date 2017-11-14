@@ -6,29 +6,29 @@ If you have that plugin, you should uninstall that plugin first, then install th
 
 ### To install the Mura Google Sitemaps plugin:
 
--Uninstall Meld Google Sitemaps (if you have it installed)
--Click on Plugins > Add Plugin in your Mura CMS administrator
--Either
-   -download the plugin from the BlueRiver GitHub repository and click Choose File
-   -(or) click on Via URL and type in https://github.com/blueriver/MuraGoogleSitemaps/archive/master.zip
--Click on Deploy
--Agree to the License
--Select any sites that you want to generate sitemaps for
--Click on Save
+- Uninstall Meld Google Sitemaps (if you have it installed)
+- Click on Plugins > Add Plugin in your Mura CMS administrator
+- Either
+   - download the plugin from the BlueRiver GitHub repository and click Choose File
+   - (or) click on Via URL and type in https://github.com/blueriver/MuraGoogleSitemaps/archive/master.zip
+- Click on Deploy
+- Agree to the License
+- Select any sites that you want to generate sitemaps for
+- Click on Save
 
 ## Setup
 
 The first thing you should do once the plugin is installed is update the settings. Set Enabled to yes, select the update frequency (the scheduler will generate the sitemap automatically for you every day at 3AM), and choose the location for your sitemap:
 
--Web Root: Google looks here automatically. If you have multiple Mura sites, you will have to choose one of the next two options.
--Site Root: Useful if you have multiple sites in your Mura instance. You will have to register your sitemaps with Google here.
--Custom: If you need to put your sitemap in a custom location, use this option to enter the full directory path to where you want the file written.
+- Web Root: Google looks here automatically. If you have multiple Mura sites, you will have to choose one of the next two options.
+- Site Root: Useful if you have multiple sites in your Mura instance. You will have to register your sitemaps with Google here.
+- Custom: If you need to put your sitemap in a custom location, use this option to enter the full directory path to where you want the file written.
 
 By default, the Mura Google Sitemap plugin will include all pages in your website. You can customize this on a per-page or per-section basis by clicking on the Extended Attributes tab in the content editor, and adjusting the Google Sitemaps settings:
 
--Exclude From Sitemap: by default all pages are included. Select "No" to exclude the page, "Yes" to include the page, and "Inherit" to inherit whatever the parent page's settings are.
--Change Frequency: this tells Google how often it should re-index the page.
--Priority: This is the priority weight you would like placed on the page. For instance, your homepage should be a 1.0, your contact us page should be similarly high, with the rest of the site weighted accordingly (note that it is questionable how valuable this weighting system is in regards to your site, so I wouldn't lose too much sleep over it).
+- Exclude From Sitemap: by default all pages are included. Select "No" to exclude the page, "Yes" to include the page, and "Inherit" to inherit whatever the parent page's settings are.
+- Change Frequency: this tells Google how often it should re-index the page.
+- Priority: This is the priority weight you would like placed on the page. For instance, your homepage should be a 1.0, your contact us page should be similarly high, with the rest of the site weighted accordingly (note that it is questionable how valuable this weighting system is in regards to your site, so I wouldn't lose too much sleep over it).
 
 ## Generation
 
