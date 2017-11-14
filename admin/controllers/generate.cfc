@@ -49,7 +49,7 @@ component persistent="false" accessors="true" output="false" extends="controller
 			}
 			else {
 				filename ="#expandPath(application.configBean.getContext() & '/')#/sites/#siteid#/sitemap.xml";
-				rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sites/#siteid#/sitemap.xml";				
+				rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sites/#siteid#/sitemap.xml";
 			}
 		}
 		else {

@@ -22,12 +22,12 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 
 	setGSMRoot();
 
-	if( fileexists("#request.gsmroot#/config/applicationSettings.cfm") ) {
-		include '#request.gsmroot#/config/applicationSettings.cfm';
-		include '#request.gsmroot#/config/mappings.cfm';
+	if( fileexists("#request.gsmroot#/core/appcfc/applicationSettings.cfm") ) {
+		include '#request.gsmroot#/core/appcfc/applicationSettings.cfm';
 	}
 	else {
-		include '#request.gsmroot#/core/appcfc/applicationSettings.cfm';
+		include '#request.gsmroot#/config/applicationSettings.cfm';
+		include '#request.gsmroot#/config/mappings.cfm';
 	}
 
 	if( fileexists(expandPath("#request.gsmroot#/config/mappings.cfm")) ) {
@@ -385,12 +385,11 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 				return;
 			}
 
-			if( fileexists(expandPath("../../config/cfapplication.cfm")) ) {
-				request.gsmroot = "../..";
+			if( fileexists(expandPath("./../../config/cfapplication.cfm")) ) {
+				request.gsmroot = "./../..";
 			}
 			else {
 				request.gsmroot = "muraWRM";
 			}
 		}
-
 }
