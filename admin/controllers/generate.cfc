@@ -37,14 +37,20 @@ component persistent="false" accessors="true" output="false" extends="controller
 		<!--- extend object issue, must set this --->
 		rc.gsmsettings.save();
 
-
 		if(rc.gsmsettings.getValue('location') eq "web") {
 			filename = "#expandPath(application.configBean.getContext() & '/')#sitemap.xml";
 			rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sitemap.xml";
 		}
 		else if(rc.gsmsettings.getValue('location') eq "site") {
-			filename ="#expandPath(application.configBean.getContext() & '/')##siteid#/sitemap.xml";
-			rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/#siteid#/sitemap.xml";
+
+			if(directoryExists("#expandPath(application.configBean.getContext() & '/')##siteid#")) {
+				filename ="#expandPath(application.configBean.getContext() & '/')##siteid#/sitemap.xml";
+				rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/#siteid#/sitemap.xml";
+			}
+			else {
+				filename ="#expandPath(application.configBean.getContext() & '/')#/sites/#siteid#/sitemap.xml";
+				rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sites/#siteid#/sitemap.xml";				
+			}
 		}
 		else {
 			filename =expandPath("#rc.gsmsettings.getValue('customlocation')#/sitemap.xml");
@@ -56,10 +62,15 @@ component persistent="false" accessors="true" output="false" extends="controller
 		}
 		catch(any e) {
 			if(rc.gsmsettings.getValue('location') eq "web") {
-				filename = expandPath("../../sitemap.xml");
+				filename = expandPath("./../../sitemap.xml");
 			}
 			else {
-				filename = expandPath("../../#siteid#/sitemap.xml");
+				if(directoryExists(expandPath("./../../#siteid#/"))) {
+					filename = expandPath("./../../#siteid#/sitemap.xml");
+				}
+				else {
+					filename = expandPath("./../../sites/#siteid#/sitemap.xml");
+				}
 			}
 			file action="write" file="#filename#" output="#sitemapXML#";
 		}
