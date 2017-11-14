@@ -22,7 +22,7 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 
 	setGSMRoot();
 
-	if( fileexists("#request.gsmroot#/core/appcfc/applicationSettings.cfm") ) {
+	if( fileexists( expandPath("#request.gsmroot#/core/appcfc/applicationSettings.cfm") ) ) {
 		include '#request.gsmroot#/core/appcfc/applicationSettings.cfm';
 	}
 	else {
@@ -191,7 +191,7 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 	public void function setupSession() {
 		setGSMRoot();
 
-		if( fileexists("#request.gsmroot#/config/applicationSettings.cfm") ) {
+		if( fileexists(expandPath("#request.gsmroot#/config/applicationSettings.cfm")) ) {
 			include '#request.gsmroot#/config/appcfc/onSessionStart_include.cfm';
 		}
 		else {
@@ -202,7 +202,7 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 	public void function onSessionEnd() {
 		setGSMRoot();
 
-		if( fileexists("#request.gsmroot#/config/applicationSettings.cfm") ) {
+		if( fileexists(expandPath("#request.gsmroot#/config/applicationSettings.cfm")) ) {
 			include '#request.gsmroot#/config/appcfc/onSessionEnd_include.cfm';
 		}
 		else {
