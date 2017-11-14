@@ -34,7 +34,7 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 		include '#request.gsmroot#/config/mappings.cfm';
 	}
 
-	include '../mappings.cfm';
+	include './../mappings.cfm';
 
 	variables.fw1Keys = 'SERVICEEXECUTIONCOMPLETE,LAYOUTS,CONTROLLEREXECUTIONCOMPLETE,VIEW,SERVICES,CONTROLLERS,CONTROLLEREXECUTIONSTARTED';
 
