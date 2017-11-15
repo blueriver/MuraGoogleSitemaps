@@ -25,17 +25,16 @@
 		<cfargument name="siteID" type="string" required="false" />
 		<cfargument name="enable" type="boolean" required="false" default="true" />
 
-		<cfset var $ = arguments.$ />
-		<cfset var settings = $.getBean('gsmsettings').loadBy(siteid = arguments.siteid) />
-		<cfset var pluginConfig = $.getPlugin("googlesitemaps") />
+		<cfset var settings = arguments.$.getBean('gsmsettings').loadBy(siteid = arguments.siteid) />
+		<cfset var pluginConfig = arguments.$.getPlugin("googlesitemaps") />
 		<cfset var timeOfDay			= createDateTime(2011,1,1,3,0,0) />
 
-		<cfset var processURL		= "http://#$.siteConfig('domain')##$.globalConfig().getServerPort()##$.globalConfig('context')#/plugins/#pluginConfig.getDirectory()#/?gsm=process:&site=#siteID#" />
-
+		<cfset var processURL		= "http://#arguments.$.siteConfig('domain')##arguments.$.globalConfig().getServerPort()##arguments.$.globalConfig('context')#/plugins/#pluginConfig.getDirectory()#/?gsm=process:&site=#siteID#" />
+		
 		<cfif arguments.enable>
 			<cfschedule
 				action="update"
-				task="Mura Google Sitemaps #$.siteConfig('domain')# - #arguments.siteID#"
+				task="Mura Google Sitemaps #arguments.$.siteConfig('domain')# - #arguments.siteID#"
 				interval="#settings.get("frequency")#"
 				url="#processURL#"
 				operation="HTTPRequest"
@@ -47,10 +46,10 @@
 		<cfelse>
 			<cfschedule
 				action="delete"
-				task="Mura Google Sitemaps #$.siteConfig('domain')# - #arguments.siteID#">
+				task="Mura Google Sitemaps #arguments.$.siteConfig('domain')# - #arguments.siteID#">
 		</cfif>
-
 	</cffunction>
+
 
 	<cffunction name="getSitemap" returntype="string" access="public" output="false">
 		<cfargument name="$" type="any" required="true" />
