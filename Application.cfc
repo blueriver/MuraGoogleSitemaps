@@ -16,25 +16,17 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 */
 component persistent="false" accessors="true" output="false" extends="includes.framework.one" {
-	param name="request.gsmroot" default="";
-
 	include 'includes/fw1config.cfm'; // framework variables
 
-	setGSMRoot();
-
-	if( fileexists( expandPath("#request.gsmroot#/core/appcfc/applicationSettings.cfm") ) ) {
-		include '#request.gsmroot#/core/appcfc/applicationSettings.cfm';
+	if( fileexists(expandPath("../../config/applicationSettings.cfm")) OR fileexists("../../config/applicationSettings.cfm")) {
+		include '../../config/applicationSettings.cfm';
+		include '../../config/mappings.cfm';
 	}
 	else {
-		include '#request.gsmroot#/config/applicationSettings.cfm';
-		include '#request.gsmroot#/config/mappings.cfm';
+		include '../../core/appcfc/applicationSettings.cfm';
 	}
 
-	if( fileexists(expandPath("#request.gsmroot#/config/mappings.cfm")) ) {
-		include '#request.gsmroot#/config/mappings.cfm';
-	}
-
-	include './../mappings.cfm';
+	include '../mappings.cfm';
 
 	variables.fw1Keys = 'SERVICEEXECUTIONCOMPLETE,LAYOUTS,CONTROLLEREXECUTIONCOMPLETE,VIEW,SERVICES,CONTROLLERS,CONTROLLEREXECUTIONSTARTED';
 
@@ -189,24 +181,20 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 	}
 
 	public void function setupSession() {
-		setGSMRoot();
-
-		if( fileexists(expandPath("#request.gsmroot#/config/applicationSettings.cfm")) ) {
-			include '#request.gsmroot#/config/appcfc/onSessionStart_include.cfm';
+		if( fileexists(expandPath("../../config/applicationSettings.cfm")) OR fileexists("../../config/applicationSettings.cfm")) {
+			include '../../config/appcfc/onSessionStart_include.cfm';
 		}
 		else {
-			include '#request.gsmroot#/core/appcfc/onSessionStart_include.cfm';
+			include '../../core/appcfc/onSessionStart_include.cfm';
 		}
 	}
 
 	public void function onSessionEnd() {
-		setGSMRoot();
-
-		if( fileexists(expandPath("#request.gsmroot#/config/applicationSettings.cfm")) ) {
-			include '#request.gsmroot#/config/appcfc/onSessionEnd_include.cfm';
+		if( fileexists(expandPath("../../config/applicationSettings.cfm")) OR fileexists("../../config/applicationSettings.cfm")) {
+			include '../../config/appcfc/onSessionEnd_include.cfm';
 		}
 		else {
-			include '#request.gsmroot#/core/appcfc/onSessionEnd_include.cfm';
+			include '../../core/appcfc/onSessionEnd_include.cfm';
 		}
 
 	}
@@ -379,17 +367,4 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 			};
 		}
 
-		private function setGSMRoot() {
-
-			if(len(request.gsmroot)) {
-				return;
-			}
-
-			if( fileexists(expandPath("./../../config/cfapplication.cfm")) ) {
-				request.gsmroot = "./../..";
-			}
-			else {
-				request.gsmroot = "muraWRM";
-			}
-		}
 }
