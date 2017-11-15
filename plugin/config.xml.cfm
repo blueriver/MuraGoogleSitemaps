@@ -43,7 +43,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 			Meta information. The name of the creator/organization that
 			developed the plugin.
 		-->
-		<provider>BlueRiver Inc.</provider>
+		<provider>blueriver</provider>
 
 		<!--
 			ProviderURL :
