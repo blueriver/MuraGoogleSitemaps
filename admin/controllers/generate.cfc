@@ -37,18 +37,18 @@ component persistent="false" accessors="true" output="false" extends="controller
 		rc.gsmsettings.save();
 
 		if(rc.gsmsettings.getValue('location') eq "web") {
-			filename = "#expandPath(application.configBean.getContext() & '/')#sitemap.xml";
-			rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sitemap.xml";
+			filename = expandPath('/murawrm/sitemap.xml');
+			rc.fileURL	= "http://" & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sitemap.xml";
 		}
 		else if(rc.gsmsettings.getValue('location') eq "site") {
 
-			if(directoryExists("#expandPath(application.configBean.getContext() & '/')##siteid#")) {
-				filename ="#expandPath(application.configBean.getContext() & '/')##siteid#/sitemap.xml";
-				rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/#siteid#/sitemap.xml";
+			if(directoryExists(expandPath('/murawrm/#siteid#')) {
+				filename =expandPath('/murawrm/#siteid#/sitemap.xml');
+				rc.fileURL	= "http://" & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/#siteid#/sitemap.xml";
 			}
 			else {
-				filename ="#expandPath(application.configBean.getContext() & '/')#/sites/#siteid#/sitemap.xml";
-				rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sites/#siteid#/sitemap.xml";
+				filename=expandPath('/murawrm/sites/#siteid#/sitemap.xml');
+				rc.fileURL	= "http://" & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sites/#siteid#/sitemap.xml";
 			}
 		}
 		else {
@@ -57,21 +57,21 @@ component persistent="false" accessors="true" output="false" extends="controller
 		}
 
 		try {
-			file action="write" file="#filename#" output="#sitemapXML#";
+			fileWrite(filename,sitemapXML);
 		}
 		catch(any e) {
 			if(rc.gsmsettings.getValue('location') eq "web") {
-				filename = expandPath("./../../sitemap.xml");
+				filename = expandPath("/murawrm/sitemap.xml");
 			}
 			else {
-				if(directoryExists(expandPath("./../../#siteid#/"))) {
-					filename = expandPath("./../../#siteid#/sitemap.xml");
+				if(directoryExists(expandPath("/murawrm/#siteid#/"))) {
+					filename = expandPath("/murawrm/#siteid#/sitemap.xml");
 				}
 				else {
-					filename = expandPath("./../../sites/#siteid#/sitemap.xml");
+					filename = expandPath("/murawrm/sites/#siteid#/sitemap.xml");
 				}
 			}
-			file action="write" file="#filename#" output="#sitemapXML#";
+			fileWrite(filename,sitemapXML);
 		}
 
 		rc.time = (getTickCount()-tickCount);
