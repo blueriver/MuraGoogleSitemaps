@@ -40,8 +40,10 @@ component persistent="false" accessors="true" output="false" extends="controller
 			filename = expandPath('/murawrm/sitemap.xml');
 			rc.fileURL	= "http://" & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sitemap.xml";
 		}
-		else if(rc.gsmsettings.getValue('location') eq "site") {
-
+		else if(rc.gsmsettings.getValue('location') eq "custom"){
+			filename=expandPath("#rc.gsmsettings.getValue('customlocation')#/sitemap.xml");
+			rc.fileURL	= "";
+		} else {
 			if(directoryExists(expandPath('/murawrm/#siteid#'))) {
 				filename =expandPath('/murawrm/#siteid#/sitemap.xml');
 				rc.fileURL	= "http://" & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/#siteid#/sitemap.xml";
@@ -50,10 +52,6 @@ component persistent="false" accessors="true" output="false" extends="controller
 				filename=expandPath('/murawrm/sites/#siteid#/sitemap.xml');
 				rc.fileURL	= "http://" & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sites/#siteid#/sitemap.xml";
 			}
-		}
-		else {
-			filename=expandPath("#rc.gsmsettings.getValue('customlocation')#/sitemap.xml");
-			rc.fileURL	= "";
 		}
 
 		try {
