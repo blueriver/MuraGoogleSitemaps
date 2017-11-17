@@ -18,12 +18,14 @@ http://www.apache.org/licenses/LICENSE-2.0
 component persistent="false" accessors="true" output="false" extends="includes.framework.one" {
 	include 'includes/fw1config.cfm'; // framework variables
 
-	if( fileexists(expandPath("../../config/applicationSettings.cfm")) OR fileexists("../../config/applicationSettings.cfm")) {
-		include '../../config/applicationSettings.cfm';
-		include '../../config/mappings.cfm';
+	rootPath = getDirectoryFromPath(getCurrentTemplatePath());
+
+	if( fileexists(rootPath & "../../core/appcfc/applicationSettings.cfm") ) {
+		include '../../core/appcfc/applicationSettings.cfm';
 	}
 	else {
-		include '../../core/appcfc/applicationSettings.cfm';
+		include '../../config/applicationSettings.cfm';
+		include '../../config/mappings.cfm';
 	}
 
 	include '../mappings.cfm';
