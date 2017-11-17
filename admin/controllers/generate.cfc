@@ -34,7 +34,6 @@ component persistent="false" accessors="true" output="false" extends="controller
 		var sitemapXML			= sitemapManager.getSitemap(rc.$,rc.siteid);
 
 		rc.gsmsettings.setValue('datelastgenerate',now());
-		<!--- extend object issue, must set this --->
 		rc.gsmsettings.save();
 
 		if(rc.gsmsettings.getValue('location') eq "web") {
