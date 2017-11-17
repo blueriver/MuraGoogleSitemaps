@@ -74,18 +74,6 @@ component persistent="false" accessors="true" output="false" extends="controller
 			file action="write" file="#filename#" output="#sitemapXML#";
 		}
 
-			<!---
-			<cftry>
-			<cfset mailer.sendHTML(msg,
-				#rc.gsmsettings.getValue('Email')#,
-				"",
-				"Google Sitemap for #siteConfig.getDomain()# - #site# complete.",
-				site,
-				siteConfig.getContactEmail() ) />
-			<cfcatch></cfcatch>
-			</cftry>
-		</cfif>
-		--->
 		rc.time = (getTickCount()-tickCount);
 	}
 
