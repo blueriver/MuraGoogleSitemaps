@@ -18,17 +18,21 @@ http://www.apache.org/licenses/LICENSE-2.0
 component persistent="false" accessors="true" output="false" extends="includes.framework.one" {
 	include 'includes/fw1config.cfm'; // framework variables
 
-	rootPath = getDirectoryFromPath(getCurrentTemplatePath());
+	this.pluginPath=getDirectoryFromPath(getCurrentTemplatePath());
+	this.depth = ListFind(this.pluginPath, 'plugins', '\/');
+	this.webRoot = RepeatString('../', this.depth);
+	this.appSettingsFile = this.webRoot & 'config/applicationSettings.cfm';
 
-	if( fileexists(rootPath & "../../core/appcfc/applicationSettings.cfm") ) {
-		include '../../core/appcfc/applicationSettings.cfm';
-	}
-	else {
-		include '../../config/applicationSettings.cfm';
-		include '../../config/mappings.cfm';
+	try {
+		include this.appSettingsFile;
+	} catch(MissingInclude e) {
+		include this.webRoot & 'core/appcfc/applicationSettings.cfm';
 	}
 
-	include '../mappings.cfm';
+	try {
+		include this.webRoot & 'config/mappings.cfm';
+		include this.webRoot & 'plugins/mappings.cfm';
+	} catch(any e) {}
 
 	variables.fw1Keys = 'SERVICEEXECUTIONCOMPLETE,LAYOUTS,CONTROLLEREXECUTIONCOMPLETE,VIEW,SERVICES,CONTROLLERS,CONTROLLEREXECUTIONSTARTED';
 
