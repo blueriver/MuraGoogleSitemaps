@@ -14,10 +14,12 @@ component persistent="false" accessors="true" output="false" extends="controller
 	public any function default(required rc) {
 		// rc.varName = 'whatever';
 
-		if(structCount(form)) {
+		if (structCount(form)) {
+			if ( !StructKeyExists(form, 'sitelist') ) {
+				form.sitelist = '';
+			};
 
 			rc.gsmsettings.set('sitelist',form.sitelist);
-
 			rc.gsmsettings.save();
 			rc.gsmsettings = $.getBean('gsmsettings').loadBy(siteid = session.siteid);
 

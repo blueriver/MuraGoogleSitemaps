@@ -22,14 +22,15 @@ component persistent="false" accessors="true" output="false" extends="controller
 
 	private function generateSitemap( required rc ) {
 
-		rc.siteid					= session.siteid;
+		rc.siteid				= session.siteid;
 
-		var siteid					= session.siteid;
+		var siteid				= session.siteid;
 		var siteConfig			= rc.$.getBean('settingsManager').getSite(siteid);
+		var siteProtocol		= siteConfig.get('useSSL') ? 'https://' : 'http://';
 		var mailer				= rc.$.getBean("mailer");
 		var tickCount			= getTickCount();
 		var msg					= "";
-		var fileName				= "";
+		var fileName			= "";
 		var sitemapManager		= $.getBean('GoogleSitemapsManager');
 		var sitemapXML			= sitemapManager.getSitemap(rc.$,rc.siteid);
 
@@ -38,7 +39,7 @@ component persistent="false" accessors="true" output="false" extends="controller
 
 		if(rc.gsmsettings.getValue('location') eq "web") {
 			filename = expandPath('/murawrm/sitemap.xml');
-			rc.fileURL	= "http://" & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sitemap.xml";
+			rc.fileURL	= siteProtocol & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sitemap.xml";
 		}
 		else if(rc.gsmsettings.getValue('location') eq "custom"){
 			filename=expandPath("#rc.gsmsettings.getValue('customlocation')#/sitemap.xml");
@@ -46,11 +47,11 @@ component persistent="false" accessors="true" output="false" extends="controller
 		} else {
 			if(directoryExists(expandPath('/murawrm/#siteid#'))) {
 				filename =expandPath('/murawrm/#siteid#/sitemap.xml');
-				rc.fileURL	= "http://" & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/#siteid#/sitemap.xml";
+				rc.fileURL	= siteProtocol & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/#siteid#/sitemap.xml";
 			}
 			else {
 				filename=expandPath('/murawrm/sites/#siteid#/sitemap.xml');
-				rc.fileURL	= "http://" & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sites/#siteid#/sitemap.xml";
+				rc.fileURL	= siteProtocol & "#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/sites/#siteid#/sitemap.xml";
 			}
 		}
 
