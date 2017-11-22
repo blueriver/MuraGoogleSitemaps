@@ -142,27 +142,6 @@ http://www.apache.org/licenses/LICENSE-2.0
 					persist="false" />
 		</eventHandlers>
 
-
-		<!--
-			Display Objects :
-			Allows developers to provide widgets that end users can apply to a
-			content node's display region(s) when editing a page. They'll be
-			listed under the Layout & Objects tab. The 'persist' attribute
-			for CFC-based objects determine whether they are cached or instantiated
-			on a per-request basis.
-		-->
-		<displayobjects location="global">
-
-			<!-- MyApp is a FW/1 sub-application -->
-			<displayobject
-					name="MuraFW1 MyApp"
-					component="includes.displayObjects"
-					displaymethod="dspMyApp"
-					persist="false" />
-
-		</displayobjects>
-
-
 		<extensions>
 			<extension type="Page" subtype="Default">
 				<attributeset name="Google Sitemaps">
