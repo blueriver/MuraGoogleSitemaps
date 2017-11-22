@@ -12,12 +12,8 @@ component persistent="false" accessors="true" output="false" extends="controller
 	// *********************************  PAGES  *******************************************
 
 	public any function default(required rc) {
-		// rc.varName = 'whatever';
 		rc.gsmsettings = $.getBean('gsmsettings').loadBy(siteid = session.siteid);
-
 		rc.feedlist = $.getBean('GoogleSitemapsManager').getFeedList(rc.$,session.siteid);
-
-//writeDump(rc.gsmsettings.getAllValues());abort;
 
 		if(StructCount(form)) {
 			rc.gsmsettings.set('isnewsenabled',form.isnewsenabled);

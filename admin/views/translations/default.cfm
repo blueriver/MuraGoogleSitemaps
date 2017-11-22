@@ -16,10 +16,6 @@ http://www.apache.org/licenses/LICENSE-2.0
 			<div class="tab-content block-content">
 				<div class="block block-bordered">
 
-					<div class="block-header">
-						<h3 class="block-title">Translation Settings</h3>
-					</div>
-
 					<div class="block-content">
 						<cfset rc.assignedsites = rc.translations.getAssignedSites() />
 						<p>With Mura Translations installed, you can include reference links to translated pages.<p>
