@@ -10,8 +10,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 --->
 </cfsilent>
 <cfoutput>
-	<h1>Google Sitemaps</h1>
-	<h3>News</h3>
+	<h2>News</h2>
 	<div id="container-gsmnews">
 		<div>
 			<div>

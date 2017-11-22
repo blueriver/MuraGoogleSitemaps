@@ -38,6 +38,10 @@ http://www.apache.org/licenses/LICENSE-2.0
 		<script src="/plugins/googlesitemaps/assets/js/vue.js" type="text/javascript"></script>
 		<div class="container-murafw1">
 
+			<div class="mura-header">
+				<h1>Google Sitemaps</h1>
+			</div>
+
 			<!--- PRIMARY NAV --->
 			<div class="row-fluid">
 				<div class="navbar navbar-murafw1">

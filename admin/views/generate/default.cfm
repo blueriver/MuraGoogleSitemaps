@@ -10,8 +10,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 --->
 </cfsilent>
 <cfoutput>
-	<h1>Google Sitemaps</h1>
-	<h3>Generate Site Map</h3>
+	<h2>Generate Site Map</h2>
 	<p>Click on the "Generate" button to generate an updated sitemap.</p>
 	<form method="post" action="?gsm=generate">
 		<input type="hidden" name="doprocess" value="1">

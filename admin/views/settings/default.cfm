@@ -10,8 +10,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 --->
 </cfsilent>
 <cfoutput>
-	<h1>Google Sitemaps</h1>
-	<h3>Settings</h3>
+	<h2>Settings</h2>
 	<form method="post" action="?gsm=settings">
 		<div class="block block-constrain" style="min-height: 532px;">
 		<div class="tab-content block-content">
