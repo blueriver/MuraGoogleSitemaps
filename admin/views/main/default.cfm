@@ -12,7 +12,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 <cfoutput>
 	<cfif not rc.gsmsettings.get("isEnabled")>
 		<div class="alert alert-error">
-			Note that Google Sitemaps is not currently enabled for this site.
+			<a href="#buildURL('admin:settings')#">Google Sitemaps is not currently enabled for this site. Go to the <strong>Settings tab</strong> and set <strong>Enabled</strong> to <strong>Yes</strong>.</a>
 		</div>
 	</cfif>
 
