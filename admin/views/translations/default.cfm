@@ -38,11 +38,12 @@ http://www.apache.org/licenses/LICENSE-2.0
 					</cfloop>
 				<div class="mura-actions">
 					<div class="form-actions">
-							<button type="submit" class="btn mura-primary""><i class="mi-check-circle"></i>Save</button>
+						<button type="submit" class="btn mura-primary"><i class="mi-check-circle"></i>Save</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<input type="hidden" name="issubmitted" value="true">
 	</form>
 </cfoutput>
