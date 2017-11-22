@@ -13,6 +13,8 @@ http://www.apache.org/licenses/LICENSE-2.0
 	<h1>Google Sitemaps</h1>
 	<h3>News</h3>
 
+	<!--- <cfdump var="#rc.feedlist#"> --->
+
 	<div id="container-gsmnews">
 		<div>
 			<div>
@@ -32,7 +34,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 							<select name="newsSource">
 								<option value="">Pick One</option>
 								<cfloop query="#rc.feedlist#">
-									<option value="#rc.feedlist.feedid[currentrow]#" <cfif rc.gsmsettings.get('newssource') eq rc.feedlist.feedid[currentrow]>selected="selected"</cfif>>#rc.feedlist.name[currentrow]#</option>
+									<option value="#rc.feedlist.feedid[currentrow]#" <cfif rc.gsmsettings.get('newssource') eq rc.feedlist.feedid[currentrow]>selected="selected"</cfif>>#rc.feedlist.siteid[currentrow]# - #rc.feedlist.name[currentrow]#</option>
 								</cfloop>
 							</select>
 						</label>
