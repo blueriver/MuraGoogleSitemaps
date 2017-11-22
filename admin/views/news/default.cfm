@@ -12,9 +12,6 @@ http://www.apache.org/licenses/LICENSE-2.0
 <cfoutput>
 	<h1>Google Sitemaps</h1>
 	<h3>News</h3>
-
-	<!--- <cfdump var="#rc.feedlist#"> --->
-
 	<div id="container-gsmnews">
 		<div>
 			<div>
@@ -61,5 +58,4 @@ http://www.apache.org/licenses/LICENSE-2.0
 			</div>
 		</div>
 	</div>
-
 </cfoutput>
