@@ -28,10 +28,9 @@ http://www.apache.org/licenses/LICENSE-2.0
 						<cfif rc.assignedsites.siteid[currentrow] neq session.siteid>
 							<cfset site = $.getBean('site').loadby(siteid=siteid)>
 							<div class="mura-control-group">
-									<label for="isEnabled">#site.get('site')# (#siteid#)</label>
-									<label class="checkbox inline">
-										<input name="sitelist" type="checkbox" value="#siteid#" class="radio inline" <cfif listContains(rc.gsmsettings.get('sitelist'),siteid)>checked="checked"</cfif>> Yes
-									</label>
+								<label for="isEnabled">#site.get('site')# (#siteid#)</label>
+								<label class="checkbox inline">
+									<input name="sitelist" type="checkbox" value="#siteid#" class="radio inline" <cfif listContains(rc.gsmsettings.get('sitelist'),siteid)>checked="checked"</cfif>> Yes
 								</label>
 							</div>
 						</cfif>
