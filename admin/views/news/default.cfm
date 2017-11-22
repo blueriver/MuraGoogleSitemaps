@@ -48,7 +48,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 							<h3>Note:</h3>
 								<p>The news sitemap generator will only include content less than two days old (as per Google guidelines). It bases this off of (in order of preference):</p>
 								<ul>
-										<li>Official Publish Date</li>
+										<li>Official Release Date</li>
 										<li>Display Date</li>
 										<li>Publish Date (Created)</li>
 								</ul>
