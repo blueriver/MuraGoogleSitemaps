@@ -25,7 +25,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 					<p>With Mura Translations installed, you can include reference links to translated pages.<p>
 					<p>Include reference links to the following sites:</p>
 					<cfloop query="#rc.assignedsites#">
-						<cfif rc.assignedsites.siteid[currentrow] != session.siteid>
+						<cfif rc.assignedsites.siteid[currentrow] neq session.siteid>
 							<cfset site = $.getBean('site').loadby(siteid=siteid)>
 							<div class="mura-control-group">
 									<label for="isEnabled">#site.get('site')# (#siteid#)</label>
