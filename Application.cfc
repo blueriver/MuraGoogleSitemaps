@@ -18,21 +18,22 @@ http://www.apache.org/licenses/LICENSE-2.0
 component persistent="false" accessors="true" output="false" extends="includes.framework.one" {
 	include 'includes/fw1config.cfm'; // framework variables
 
-	this.pluginPath=getDirectoryFromPath(getCurrentTemplatePath());
-	this.depth = ListFind(this.pluginPath, 'plugins', '\/');
-	this.webRoot = RepeatString('../', this.depth);
-	this.appSettingsFile = this.webRoot & 'config/applicationSettings.cfm';
+	local.pluginPath=getDirectoryFromPath(getCurrentTemplatePath());
+  local.depth = ListLen(local.pluginPath,'\/') - ListFind(local.pluginPath, 'plugins', '\/') + 1;
+  local.muraroot = RepeatString('../', local.depth);
 
-	try {
-		include this.appSettingsFile;
-	} catch(MissingInclude e) {
-		include this.webRoot & 'core/appcfc/applicationSettings.cfm';
-	}
+  if(directoryExists(local.muraroot & "core")){
+    this.muraAppCFCPath = local.muraroot & "core/appcfc/";
+	  include this.muraAppCFCPath & "applicationSettings.cfm";
+  } else {
+    this.muraAppCFCPath = local.muraroot & "config/appcfc/";
+	  include local.muraroot & "config/applicationSettings.cfm";
+  }
 
-	try {
-		include this.webRoot & 'config/mappings.cfm';
-		include this.webRoot & 'plugins/mappings.cfm';
-	} catch(any e) {}
+  try {
+      include local.muraroot & 'config/mappings.cfm';
+      include local.muraroot & 'plugins/mappings.cfm';
+  } catch(any e) {}
 
 	variables.fw1Keys = 'SERVICEEXECUTIONCOMPLETE,LAYOUTS,CONTROLLEREXECUTIONCOMPLETE,VIEW,SERVICES,CONTROLLERS,CONTROLLEREXECUTIONSTARTED';
 
@@ -187,22 +188,11 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 	}
 
 	public void function setupSession() {
-		if( fileexists(expandPath("../../config/applicationSettings.cfm")) OR fileexists("../../config/applicationSettings.cfm")) {
-			include '../../config/appcfc/onSessionStart_include.cfm';
-		}
-		else {
-			include '../../core/appcfc/onSessionStart_include.cfm';
-		}
+			include this.muraAppCFCPath & 'onSessionStart_include.cfm';
 	}
 
 	public void function onSessionEnd() {
-		if( fileexists(expandPath("../../config/applicationSettings.cfm")) OR fileexists("../../config/applicationSettings.cfm")) {
-			include '../../config/appcfc/onSessionEnd_include.cfm';
-		}
-		else {
-			include '../../core/appcfc/onSessionEnd_include.cfm';
-		}
-
+			include this.muraAppCFCPath & 'onSessionEnd_include.cfm';
 	}
 
 	public string function buildURL(required string action, string path='#resolvePath()#', any queryString='') {
