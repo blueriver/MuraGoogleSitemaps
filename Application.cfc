@@ -20,7 +20,7 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 
 	local.pluginPath = GetDirectoryFromPath(GetCurrentTemplatePath());
 	local.muraroot = Left(local.pluginPath, Find('plugins', local.pluginPath) - 1);
-	local.depth = ListLen(RemoveChars(local.pluginPath,1,len(local.muraroot)), '\/');  
+	local.depth = ListLen(RemoveChars(local.pluginPath,1, Len(local.muraroot)), '\/');  
 	local.includeroot = RepeatString('../', local.depth);
 
 	if ( DirectoryExists(local.muraroot & 'core') ) {
