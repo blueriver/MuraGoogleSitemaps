@@ -35,7 +35,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 </cfsilent>
 <cfsavecontent variable="local.newBody">
 	<cfoutput>
-		<script src="/plugins/googlesitemaps/assets/js/vue.js" type="text/javascript"></script>
+		<script src="/plugins/MuraGoogleSitemaps/assets/js/vue.js" type="text/javascript"></script>
 		<div class="container-murafw1">
 
 			<div class="mura-header">
@@ -92,7 +92,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 	<script>
     Mura(function(m) {
       m.loader()
-        .loadcss('#rc.$.globalConfig('context')#/plugins/googlesitemaps/assets/css/gsm.css');
+        .loadcss('#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css');
 
     });
   </script>

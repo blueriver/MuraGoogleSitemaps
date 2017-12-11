@@ -111,7 +111,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 <script>
 
 	m.loader()
-			.loadjs('#rc.$.globalConfig('context')#/plugins/googlesitemaps/assets/js/gsmnews.js');
+			.loadjs('#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/js/gsmnews.js');
 
 
 </script>
