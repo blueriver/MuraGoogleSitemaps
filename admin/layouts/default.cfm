@@ -33,53 +33,44 @@ http://www.apache.org/licenses/LICENSE-2.0
 		body = local.errors & body;
 	</cfscript>
 </cfsilent>
+
 <cfsavecontent variable="local.newBody">
 	<cfoutput>
 		<script src="/plugins/MuraGoogleSitemaps/assets/js/vue.js" type="text/javascript"></script>
 		<div class="container-murafw1">
-
 			<div class="mura-header">
 				<h1>Google Sitemaps</h1>
 			</div>
-
-			<!--- PRIMARY NAV --->
-			<div class="row-fluid">
-				<div class="navbar navbar-murafw1">
-					<div class="navbar-inner">
-
-						<div>
-							<ul class="nav nav-tabs" role="tablist">
-								<li<cfif rc.action eq 'admin:main.default'> class="active"</cfif>>
-									<a href="#buildURL(action='', path='./')#">Home</a>
-								</li>
-								<li<cfif rc.action eq 'admin:generate.default'> class="active"</cfif>>
-									<a href="#buildURL(action='admin:generate', path='./')#">Generate</a>
-								</li>
-								<li<cfif rc.action eq 'admin:news.default'> class="active"</cfif>>
-									<a href="#buildURL(action='admin:news', path='./')#">News</a>
-								</li>
-								<cfif rc.hasTranslationManager>
-									<li<cfif rc.action eq 'admin:translations.default'> class="active"</cfif>>
-										<a href="#buildURL(action='admin:translations', path='./')#">Translations</a>
-									</li>
-								</cfif>
-								<li<cfif rc.action eq 'admin:settings.default'> class="active"</cfif>>
-									<a href="#buildURL(action='admin:settings', path='./')#">Settings</a>
-								</li>
-							</ul>
-						</div>
-
-					</div><!--- /.navbar-inner --->
-				</div><!--- /.navbar --->
-			</div><!--- /.row --->
-
-			<!--- MAIN CONTENT AREA --->
-			<div class="row-fluid">
-					<!--- BODY --->
-					<div class="span12">
-						#body#
-					</div>
-			</div><!--- /.row --->
+			<div class="block block-constrain">
+		    <ul class="mura-tab-links nav-tabs">
+					<li<cfif rc.action eq 'admin:main.default'> class="active"</cfif>>
+						<a href="#buildURL(action='', path='./')#">Home</a>
+					</li>
+					<li<cfif rc.action eq 'admin:generate.default'> class="active"</cfif>>
+						<a href="#buildURL(action='admin:generate', path='./')#">Generate</a>
+					</li>
+					<li<cfif rc.action eq 'admin:news.default'> class="active"</cfif>>
+						<a href="#buildURL(action='admin:news', path='./')#">News</a>
+					</li>
+					<cfif rc.hasTranslationManager>
+						<li<cfif rc.action eq 'admin:translations.default'> class="active"</cfif>>
+							<a href="#buildURL(action='admin:translations', path='./')#">Translations</a>
+						</li>
+					</cfif>
+					<li<cfif rc.action eq 'admin:settings.default'> class="active"</cfif>>
+						<a href="#buildURL(action='admin:settings', path='./')#">Settings</a>
+					</li>
+		    </ul>
+		    <div class="block-content tab-content">
+		        <div class="tab-pane active" id="tabA"> 
+		            <div class="block block-bordered"> 
+		                <div class="block-content">
+		                   #body#            
+		                </div> <!-- /.block-content -->
+		            </div> <!-- /.block-bordered -->
+		        </div> <!-- /.tab-pane -->
+		    </div> <!-- /.block-content.tab-content -->			 
+			</div> <!-- /.block.block-constrain -->
 		</div><!--- /.container-murafw1 --->
 	</cfoutput>
 </cfsavecontent>
