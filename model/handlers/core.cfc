@@ -18,7 +18,7 @@ component extends="mura.plugin.pluginGenericEventHandler" {
 
 		var checkSchema=isDefined('url.applydbupdates') || !ioc.containsBean('gsmsettings');
 
-		variables.package = arguments.$.getPlugin("googlesitemaps");
+		variables.package = arguments.$.getPlugin("MuraGoogleSitemaps");
 
 		variables.pluginPath =
 			variables.$.globalConfig('context')
@@ -27,7 +27,7 @@ component extends="mura.plugin.pluginGenericEventHandler" {
 
 		for(var item in beanArray){
 			try {
-				ioc.declareBean(beanName=item, dottedPath='googlesitemaps.model.bean.#item#', isSingleton = false );
+				ioc.declareBean(beanName=item, dottedPath='MuraGoogleSitemaps.model.bean.#item#', isSingleton = false );
 
 			// call instance
 				bean = ioc.getBean(item);
@@ -51,7 +51,7 @@ component extends="mura.plugin.pluginGenericEventHandler" {
 			}
 		}
 
-		ioc.declareBean(beanName='GoogleSitemapsManager', dottedPath='googlesitemaps.model.manager.googlesitemapsmanager', isSingleton = true );
+		ioc.declareBean(beanName='GoogleSitemapsManager', dottedPath='MuraGoogleSitemaps.model.manager.googlesitemapsmanager', isSingleton = true );
 
 		variables.pluginConfig.addEventHandler(this);
 		validateSession();

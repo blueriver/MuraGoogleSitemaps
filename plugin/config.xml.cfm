@@ -12,7 +12,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 	<plugin>
 
 		<!-- Name : the name of the plugin -->
-		<name>Google Sitemaps</name>
+		<name>MuraGoogleSitemaps</name>
 
 		<!-- Package : a unique, variable-safe name for the plugin -->
 		<package>#variables.framework.package#</package>
