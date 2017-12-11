@@ -18,23 +18,26 @@ http://www.apache.org/licenses/LICENSE-2.0
 component persistent="false" accessors="true" output="false" extends="includes.framework.one" {
 	include 'includes/fw1config.cfm'; // framework variables
 
-	local.pluginPath=getDirectoryFromPath(getCurrentTemplatePath());
-  local.muraroot=left(local.pluginPath,find('plugins',local.pluginPath) -1);
-  local.depth = ListLen(RemoveChars(local.pluginPath,1,len(local.muraroot)),'\/');  
-  local.includeroot = RepeatString('../', local.depth);
+	local.pluginPath = GetDirectoryFromPath(GetCurrentTemplatePath());
+	local.muraroot = Left(local.pluginPath, Find('plugins', local.pluginPath) - 1);
+	local.depth = ListLen(RemoveChars(local.pluginPath,1,len(local.muraroot)), '\/');  
+	local.includeroot = RepeatString('../', local.depth);
 
-  if(directoryExists(local.muraroot & "core")){
-    this.muraAppConfigPath = local.includeroot & "core/";
-	  include this.muraAppConfigPath & "appcfc/applicationSettings.cfm";
-  } else {
-    this.muraAppConfigPath = local.includeroot & "config";
-	  include local.includeroot & "config/applicationSettings.cfm";
-  }
+	if ( DirectoryExists(local.muraroot & 'core') ) {
+		// Using 7.1
+		this.muraAppConfigPath = local.includeroot & 'core/';
+		include this.muraAppConfigPath & 'appcfc/applicationSettings.cfm';
+	} else {
+		// Pre 7.1
+		this.muraAppConfigPath = local.includeroot & 'config';
+		include local.includeroot & 'config/applicationSettings.cfm';
 
-  try {
-      include local.includeroot & 'config/mappings.cfm';
-      include local.includeroot & 'plugins/mappings.cfm';
-  } catch(any e) {}
+		try {
+			include local.includeroot & 'config/mappings.cfm';
+			include local.includeroot & 'plugins/mappings.cfm';
+		} catch(any e) {}
+
+	}
 
 	variables.fw1Keys = 'SERVICEEXECUTIONCOMPLETE,LAYOUTS,CONTROLLEREXECUTIONCOMPLETE,VIEW,SERVICES,CONTROLLERS,CONTROLLEREXECUTIONSTARTED';
 
