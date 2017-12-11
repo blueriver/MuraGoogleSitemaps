@@ -53,8 +53,8 @@
 
 	<cffunction name="getSitemap" returntype="string" access="public" output="false">
 		<cfargument name="$" type="any" required="true" />
-    <cfargument name="siteID" type="string" required="false" />
-    <cfargument name="isNews" type="boolean" required="false" default="false" />
+    	<cfargument name="siteID" type="string" required="false" />
+    	<cfargument name="isNews" type="boolean" required="false" default="false" />
 
 		<cfset var site = $.getBean('site').loadby(siteid=siteid)>
 		<cfset var gsmsettings = $.getBean('gsmsettings').loadby(siteid=siteid)>
@@ -105,20 +105,8 @@
 					tclassextend.subTypeID = tclassextendsets.subTypeID
 				AND
 					tclassextend.subtype = 'Default'
-			AND
-				(
-					tclassextend.type = 'Page'
-				OR
-					tclassextend.type = 'Portal'
-				OR
-					tclassextend.type = 'Folder'
-				OR
-					tclassextend.type = 'Calendar'
-				OR
-					tclassextend.type = 'Gallery'
-				OR
-					tclassextend.type = 'File'
-				)
+				AND
+					tclassextend.type = 'Base'
 			WHERE
 				tclassextendattributes.siteid = <cfqueryparam value="#useSiteID#" cfsqltype="cf_sql_varchar" maxlength="25">
 			AND
@@ -135,7 +123,7 @@
 				ON
 					tclassextend.siteID = <cfqueryparam value="#useSiteID#" cfsqltype="cf_sql_varchar" maxlength="25">
 				AND
-					tcontent.type = tclassextend.type
+					tcontent.type IN ('Page','File','Folder','Portal','Calendar','Gallery','Link')
 				AND
 					tclassextend.subtype = 'Default'
 			JOIN
@@ -157,19 +145,7 @@
 			WHERE
 				tcontent.siteid = <cfqueryparam value="#useSiteID#" cfsqltype="cf_sql_varchar" maxlength="25">
 			AND
-				(
-					tclassextend.type = 'Page'
-				OR
-					tclassextend.type = 'Portal'
-				OR
-					tclassextend.type = 'Folder'
-				OR
-					tclassextend.type = 'Calendar'
-				OR
-					tclassextend.type = 'Gallery'
-				OR
-					tclassextend.type = 'File'
-				)
+				tclassextend.type = 'Base'
 			AND
 				tcontent.approved = 1
 			AND
