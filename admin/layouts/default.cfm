@@ -8,10 +8,11 @@ Licensed under the Apache License, Version v2.0
 http://www.apache.org/licenses/LICENSE-2.0
 
 --->
-	<cfsavecontent variable="local.errors">
+	
+	<cfsavecontent variable="local.alerts">
 		<cfif StructKeyExists(rc, 'errors') and IsArray(rc.errors) and ArrayLen(rc.errors)>
 			<div class="alert alert-error">
-				<button type="button" class="close" data-dismiss="alert"><i class="icon-remove-sign"></i></button>
+				<button type="button" class="close" data-dismiss="alert"><i class="mi-close"></i></button>
 				<h2>Alert!</h2>
 				<h3>Please note the following message<cfif ArrayLen(rc.errors) gt 1>s</cfif>:</h3>
 				<ul>
@@ -26,11 +27,21 @@ http://www.apache.org/licenses/LICENSE-2.0
 					</cfloop>
 				</ul>
 			</div><!--- /.alert --->
+
+		<!--- if no errors --->
+		<cfelseif structCount(form)>
+			<div class="alert alert-success">
+				<cfif rc.action eq 'admin:generate.default'>
+					<span>Sitemap generated!</span>
+				<cfelse>
+					<span>Settings saved!</span>
+				</cfif>
+			</div>	
 		</cfif>
+	
 	</cfsavecontent>
 	<cfscript>
 		param name="rc.compactDisplay" default="false";
-		body = local.errors & body;
 	</cfscript>
 </cfsilent>
 
@@ -38,6 +49,9 @@ http://www.apache.org/licenses/LICENSE-2.0
 	<cfoutput>
 		<script src="/plugins/MuraGoogleSitemaps/assets/js/vue.js" type="text/javascript"></script>
 		<div class="container-murafw1">
+
+			#trim(local.alerts)#
+
 			<div class="mura-header">
 				<h1>Google Sitemaps</h1>
 			</div>
