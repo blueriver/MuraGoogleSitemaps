@@ -18,7 +18,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 			<div>
 				<criteria-box :criteria="criteria"></criteria-box>
 				<form method="post" action="?gsm=news" id="newsform">
-					<div class="block block-constrain" style="min-height: 532px;">
+					<div class="block block-constrain">
 						<div class="mura-control-group">
 							<label for="isEnabled">News Sitemap Enabled</label>
 							<label class="radio inline">

@@ -48,7 +48,6 @@ http://www.apache.org/licenses/LICENSE-2.0
 <cfsavecontent variable="local.newBody">
 	<cfoutput>
 		<script src="/plugins/MuraGoogleSitemaps/assets/js/vue.js" type="text/javascript"></script>
-		<div class="container-murafw1">
 
 			#trim(local.alerts)#
 
@@ -85,7 +84,6 @@ http://www.apache.org/licenses/LICENSE-2.0
 		        </div> <!-- /.tab-pane -->
 		    </div> <!-- /.block-content.tab-content -->			 
 			</div> <!-- /.block.block-constrain -->
-		</div><!--- /.container-murafw1 --->
 	</cfoutput>
 </cfsavecontent>
 <cfoutput>
