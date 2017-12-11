@@ -17,8 +17,8 @@ http://www.apache.org/licenses/LICENSE-2.0
 	variables.framework = {};
 
 	// !important: enter the plugin packageName here. must be the same as found in '{context}/plugin/config.xml.cfm'
-	variables.framework.package = 'googlesitemaps';
-	variables.framework.packageVersion = '4.1.2';
+	variables.framework.package = 'MuraGoogleSitemaps';
+	variables.framework.packageVersion = '4.2.0';
 
 	// If true, then each subsystem is treated as its own, individual application, unaware of any other subsystem, and will not respond to requests for any other subsystem. For example, if a link in App2 points to 'buildURL('app3:main.form') as a 'href' tag and is clicked, then App2 will maintain its state and not respond. Only App3 will respond to that request. If false, then it is assumed that you will only have ONE display object on any page at any given time. If you have more than one, then as you interact with it, all of them will respond with the same view. You have been warned!
 	variables.framework.siloSubsystems = true;
