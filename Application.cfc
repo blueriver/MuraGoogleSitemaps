@@ -19,20 +19,21 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 	include 'includes/fw1config.cfm'; // framework variables
 
 	local.pluginPath=getDirectoryFromPath(getCurrentTemplatePath());
-  local.depth = ListLen(local.pluginPath,'\/') - ListFind(local.pluginPath, 'plugins', '\/') + 1;
-  local.muraroot = RepeatString('../', local.depth);
+  local.muraroot=left(local.pluginPath,find('plugins',local.pluginPath) -1);
+  local.depth = ListLen(RemoveChars(local.pluginPath,1,len(local.muraroot)),'\/');  
+  local.includeroot = RepeatString('../', local.depth);
 
   if(directoryExists(local.muraroot & "core")){
-    this.muraAppCFCPath = local.muraroot & "core/appcfc/";
-	  include this.muraAppCFCPath & "applicationSettings.cfm";
+    this.muraAppConfigPath = local.includeroot & "core/";
+	  include this.muraAppConfigPath & "appcfc/applicationSettings.cfm";
   } else {
-    this.muraAppCFCPath = local.muraroot & "config/appcfc/";
-	  include local.muraroot & "config/applicationSettings.cfm";
+    this.muraAppConfigPath = local.includeroot & "config";
+	  include local.includeroot & "config/applicationSettings.cfm";
   }
 
   try {
-      include local.muraroot & 'config/mappings.cfm';
-      include local.muraroot & 'plugins/mappings.cfm';
+      include local.includeroot & 'config/mappings.cfm';
+      include local.includeroot & 'plugins/mappings.cfm';
   } catch(any e) {}
 
 	variables.fw1Keys = 'SERVICEEXECUTIONCOMPLETE,LAYOUTS,CONTROLLEREXECUTIONCOMPLETE,VIEW,SERVICES,CONTROLLERS,CONTROLLEREXECUTIONSTARTED';
@@ -188,11 +189,11 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 	}
 
 	public void function setupSession() {
-			include this.muraAppCFCPath & 'onSessionStart_include.cfm';
+			include this.muraAppConfigPath & 'appcfc/onSessionStart_include.cfm';
 	}
 
 	public void function onSessionEnd() {
-			include this.muraAppCFCPath & 'onSessionEnd_include.cfm';
+			include this.muraAppConfigPath & 'appcfc/onSessionEnd_include.cfm';
 	}
 
 	public string function buildURL(required string action, string path='#resolvePath()#', any queryString='') {
