@@ -30,7 +30,7 @@
 		<cfset var timeOfDay			= createDateTime(2011,1,1,3,0,0) />
 
 		<cfset var processURL		= "http://#arguments.$.siteConfig('domain')##arguments.$.globalConfig().getServerPort()##arguments.$.globalConfig('context')#/plugins/#pluginConfig.getDirectory()#/?gsm=process:&site=#siteID#" />
-		
+
 		<cfif arguments.enable>
 			<cfschedule
 				action="update"
@@ -58,7 +58,7 @@
 
 		<cfset var site = $.getBean('site').loadby(siteid=siteid)>
 		<cfset var gsmsettings = $.getBean('gsmsettings').loadby(siteid=siteid)>
-		<cfset var translations = $.getPlugin('muratranslations')>
+		<cfset var translations = $.getPlugin('MuraTranslations')>
 		<cfset var translationsid = translations.getPluginID()>
 
 		<cfset var useSiteID	= iif( structKeyExists(arguments,"siteID"),de(arguments.siteID),de(session.siteid) ) />
