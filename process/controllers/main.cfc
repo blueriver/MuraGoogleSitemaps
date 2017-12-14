@@ -24,11 +24,10 @@ component persistent="false" accessors="true" output="false" extends="controller
 		var sitemapXML			= sitemapManager.getSitemap(rc.$,siteid);
 
 
-
-
 		rc.gsmsettings.setValue('datelastgenerate',now());
-		<!--- extend object issue, must set this --->
+
 		rc.gsmsettings.save();
+
 
 		if(rc.gsmsettings.getValue('location') eq "web") {
 			filename = "#expandPath(application.configBean.getContext() & '/')#sitemap.xml";
@@ -39,7 +38,7 @@ component persistent="false" accessors="true" output="false" extends="controller
 			rc.fileURL	= "http://#siteConfig.getDomain()##rc.$.globalConfig().getServerPort()##rc.$.globalConfig().getContext()#/#siteid#/sitemap.xml";
 		}
 		try {
-			file action="write" file="#filename#" output="#sitemapXML#";
+			fileWrite(filename,sitemapXML);
 		}
 		catch(any e) {
 			writeDump(e);abort;
@@ -49,20 +48,26 @@ component persistent="false" accessors="true" output="false" extends="controller
 			else {
 				filename = expandPath("../../#siteid#/sitemap.xml");
 			}
-			file action="write" file="#filename#" output="#sitemapXML#";
+			fileWrite(filename,sitemapXML);
 		}
-			<!---
-			<cftry>
-			<cfset mailer.sendHTML(msg,
-				#rc.gsmsettings.getValue('Email')#,
-				"",
-				"Google Sitemap for #siteConfig.getDomain()# - #site# complete.",
-				site,
-				siteConfig.getContactEmail() ) />
-			<cfcatch></cfcatch>
-			</cftry>
-		</cfif>
-		--->
+
+		if( len( rc.gsmsettings.getValue('notifyemail') ) )  {
+
+			try {
+				mailer.sendHTML(msg,
+					#rc.gsmsettings.getValue('notifyemail')#,
+					"",
+					"Google Sitemap for #siteConfig.getDomain()# - #siteid# complete.",
+					siteid,
+					siteConfig.getContactEmail() );
+			}
+			catch( any e ) {
+					writeDump(e);
+					abort;
+			}
+		}
+
+
 		rc.time = (getTickCount()-tickCount);
 
 
