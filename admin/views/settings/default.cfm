@@ -41,12 +41,10 @@ http://www.apache.org/licenses/LICENSE-2.0
 				<option value="monthly" <cfif rc.gsmsettings.get('frequency') eq "monthly">selected="selected"</cfif>>Monthly</option>
 			</select>
 		</div>
-		<!---
 		<div class="mura-control-group">
 				<label for="notifyemail">Notification</label>
 				<input name="notifyemail" type="text" value="#rc.gsmsettings.get('notifyemail')#">
 		</div>
-		--->
 	<div class="mura-actions">
 		<div class="form-actions">
 			<button type="submit" class="btn mura-primary"><i class="mi-check-circle"></i>Save</button>

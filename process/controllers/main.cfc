@@ -23,9 +23,6 @@ component persistent="false" accessors="true" output="false" extends="controller
 		var sitemapManager		= $.getBean('GoogleSitemapsManager');
 		var sitemapXML			= sitemapManager.getSitemap(rc.$,siteid);
 
-
-
-
 		rc.gsmsettings.setValue('datelastgenerate',now());
 		<!--- extend object issue, must set this --->
 		rc.gsmsettings.save();
@@ -51,7 +48,7 @@ component persistent="false" accessors="true" output="false" extends="controller
 			}
 			file action="write" file="#filename#" output="#sitemapXML#";
 		}
-			<!---
+
 			<cftry>
 			<cfset mailer.sendHTML(msg,
 				#rc.gsmsettings.getValue('Email')#,
@@ -62,7 +59,6 @@ component persistent="false" accessors="true" output="false" extends="controller
 			<cfcatch></cfcatch>
 			</cftry>
 		</cfif>
-		--->
 		rc.time = (getTickCount()-tickCount);
 
 
