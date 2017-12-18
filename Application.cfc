@@ -29,7 +29,7 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 		include this.muraAppConfigPath & 'appcfc/applicationSettings.cfm';
 	} else {
 		// Pre 7.1
-		this.muraAppConfigPath = local.includeroot & 'config';
+		this.muraAppConfigPath = local.includeroot & 'config/';
 		include local.includeroot & 'config/applicationSettings.cfm';
 
 		try {
@@ -132,10 +132,18 @@ component persistent="false" accessors="true" output="false" extends="includes.f
 
 		param name='request.context.siteid' default='';
 
+		setting requesttimeout="60"; // extend the request timeout for this
 		if ( !StructKeyExists(session, 'siteid') ) {
-			lock scope='session' type='exclusive' timeout='10' {
-				session.siteid = 'default';
-			};
+			// Session is not setup when running from the scheduler
+			if (StructKeyExists(url,"site")) {
+				lock scope='session' type='exclusive' timeout='10' {
+					session.siteid = url.site;
+				};
+			} else {
+				lock scope='session' type='exclusive' timeout='10' {
+					session.siteid = 'default';
+				};
+			}
 		}
 
 		secureRequest();
