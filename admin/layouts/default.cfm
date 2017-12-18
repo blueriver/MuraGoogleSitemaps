@@ -93,10 +93,15 @@ http://www.apache.org/licenses/LICENSE-2.0
 		,compactDisplay=rc.compactDisplay
 	)#
 	<script>
-    Mura(function(m) {
-      m.loader()
-        .loadcss('#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css');
-
+	if ( DirectoryExists(local.muraroot & 'core') ) {
+		// Using 7.1
+		Mura(function(m) {
+		m.loader()
+		.loadcss('#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css');
+	} else {
+		// Pre 7.1
+		cfhtmlhead(text="<link href=""#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css"" rel=""stylesheet"" type=""text/css"" />");
+	}
     });
   </script>
 </cfoutput>
