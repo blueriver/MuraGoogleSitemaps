@@ -92,11 +92,18 @@ http://www.apache.org/licenses/LICENSE-2.0
 		,pageTitle=rc.pc.getName()
 		,compactDisplay=rc.compactDisplay
 	)#
-	<script>
-    Mura(function(m) {
-      m.loader()
-        .loadcss('#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css');
-
-    });
-  </script>
+	<cfscript>
+	if ( DirectoryExists(local.muraroot & 'core') ) {
+		// Using 7.1
+		<script>
+		Mura(function(m) {
+			m.loader()
+			.loadcss('#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css');
+		});
+		</script>
+	} else {
+		// Pre 7.1
+		cfhtmlhead(text="<link href=""#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css"" rel=""stylesheet"" type=""text/css"" />");
+	}
+	</cfscript>
 </cfoutput>
