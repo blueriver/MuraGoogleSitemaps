@@ -1,4 +1,4 @@
-The Google Sitemaps Plugin generates Google-compatible sitemaps for a Mura CMS website. Sitemaps are xml documents that the Google site crawler will use to properly and efficiently document your website. You can find details on Google Sitemaps on their website. This plugin replaces the Meld Google Sitemaps plugin, which is now deprecated.
+The Google Sitemaps Plugin generates Google-compatible sitemaps for a Mura site. Sitemaps are xml documents that the Google site crawler will use to properly and efficiently document your website. You can find details on Google Sitemaps on their website. This plugin replaces the Meld Google Sitemaps plugin, which is now deprecated.
 
 ## Installation
 
