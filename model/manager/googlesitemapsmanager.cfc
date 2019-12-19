@@ -41,7 +41,6 @@
 				startdate="#dateFormat(now(),"mm/dd/yy")#"
 				starttime="#timeFormat( timeOfDay,"hh:mm TT" )#"
 				resolveurl="true"
-				requesttimeout="1000"
 				>
 		<cfelse>
 			<cfschedule
