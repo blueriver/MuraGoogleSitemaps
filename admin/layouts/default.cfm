@@ -43,6 +43,19 @@ http://www.apache.org/licenses/LICENSE-2.0
 	<cfscript>
 		param name="rc.compactDisplay" default="false";
 	</cfscript>
+
+	<cfsavecontent variable="local.cssinclude">
+	<cfoutput>
+		<script>
+		Mura(function(m) {
+			m.loader()
+			.loadcss('#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css');
+		});
+		</script>
+	</cfoutput>
+	</cfsavecontent>
+	<cfset local.pluginPath = GetDirectoryFromPath(GetCurrentTemplatePath()) />
+	<cfset local.muraroot = Left(local.pluginPath, Find('plugins', local.pluginPath) - 1) />
 </cfsilent>
 
 <cfsavecontent variable="local.newBody">
@@ -84,6 +97,14 @@ http://www.apache.org/licenses/LICENSE-2.0
 		        </div> <!-- /.tab-pane -->
 		    </div> <!-- /.block-content.tab-content -->			 
 			</div> <!-- /.block.block-constrain -->
+
+		<cfif DirectoryExists(local.muraroot & 'core')>
+			<!--- Using 7.1 --->
+			#local.cssinclude#
+		<cfelse>
+			<!--- Pre 7.1 --->
+			<cfhtmlhead text="<link href=""#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css"" rel=""stylesheet"" type=""text/css"" />" />
+		</cfif>
 	</cfoutput>
 </cfsavecontent>
 <cfoutput>
@@ -92,11 +113,4 @@ http://www.apache.org/licenses/LICENSE-2.0
 		,pageTitle=rc.pc.getName()
 		,compactDisplay=rc.compactDisplay
 	)#
-	<script>
-    Mura(function(m) {
-      m.loader()
-        .loadcss('#rc.$.globalConfig('context')#/plugins/MuraGoogleSitemaps/assets/css/gsm.css');
-
-    });
-  </script>
 </cfoutput>
