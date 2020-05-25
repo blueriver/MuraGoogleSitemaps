@@ -96,6 +96,30 @@
 				ON
 					tclassextendattributes.attributeID = tclassextenddata.attributeID
 			JOIN
+				tcontent
+				ON
+					tclassextendattributes.attributeID = tclassextenddata.attributeID
+				AND
+					tclassextenddata.baseID = tcontent.contentHistID
+				AND
+					tcontent.approved = 1
+				AND
+					tcontent.active = 1
+				AND
+					(
+					tcontent.display = 1
+					OR
+						(
+							tcontent.display = 2
+							AND
+							<cfif application.configBean.getDbType() eq "mysql">
+								tcontent.displaystart <= CURDATE()
+							<cfelse>
+								tcontent.displaystart <= #CreateODBCDateTime( now() )#
+							</cfif>
+						)
+					)
+			JOIN
 				tclassextendsets
 				ON
 					tclassextendsets.extendSetID = tclassextendattributes.extendSetID
