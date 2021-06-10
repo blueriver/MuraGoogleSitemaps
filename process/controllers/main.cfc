@@ -41,7 +41,7 @@ component persistent="false" accessors="true" output="false" extends="controller
 			fileWrite(filename,sitemapXML);
 		}
 		catch(any e) {
-			writeDump(e);abort;
+			// writeDump(e);abort;
 			if(rc.gsmsettings.getValue('location') eq "web") {
 				filename = expandPath("../../sitemap.xml");
 			}
@@ -62,8 +62,8 @@ component persistent="false" accessors="true" output="false" extends="controller
 					siteConfig.getContactEmail() );
 			}
 			catch( any e ) {
-					writeDump(e);
-					abort;
+					// writeDump(e);
+					// abort;
 			}
 		}
 
