@@ -32,6 +32,10 @@ http://www.apache.org/licenses/LICENSE-2.0
 					persist="false" />
 		</eventHandlers>
 
+		<!-- Required for Mura 6.2 installation -->
+		<displayobjects></displayobjects>
+		<settings></settings>
+
 		<extensions>
 			<extension type="Base" subtype="Default">
 				<attributeset name="Google Sitemaps">
